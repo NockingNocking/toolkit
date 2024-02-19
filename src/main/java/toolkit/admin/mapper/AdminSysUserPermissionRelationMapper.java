@@ -1,4 +1,4 @@
-package toolkit.mapper;
+package toolkit.admin.mapper;
 
 /**
  * @author: Nocking
@@ -7,6 +7,7 @@ package toolkit.mapper;
  **/
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import toolkit.admin.entries.AdminSysUserPermissionRelation;
 
 public interface AdminSysUserPermissionRelationMapper extends BaseMapper<AdminSysUserPermissionRelation> {
 

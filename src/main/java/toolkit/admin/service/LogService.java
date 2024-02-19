@@ -8,11 +8,6 @@ import toolkit.frame.api.ApiResult;
  * @date: 2024/2/18
  * @package: toolkit.admin.service
  **/
-
-
-
-
-
 public interface LogService {
   
   ApiResult login(LoginUserParam param);

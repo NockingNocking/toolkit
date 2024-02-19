@@ -1,4 +1,4 @@
-package toolkit.mapper;
+package toolkit.admin.entries;
 
 /**
  * @author: Nocking
@@ -25,6 +25,9 @@ public class AdminSysUser implements Serializable {
   @TableId(value = "user_id", type = IdType.ID_WORKER)
   private Integer userId;
   
+  //用户角色
+  private Integer roleId;
+  
   //账号
   private String account;
   
@@ -33,6 +36,9 @@ public class AdminSysUser implements Serializable {
   
   //用户密码
   private String password;
+  
+  //用户岗位
+  private String position;
   
   //上一次登录时间
   private Date lastLoginTime;

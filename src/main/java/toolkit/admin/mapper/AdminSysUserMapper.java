@@ -1,5 +1,6 @@
-package toolkit.mapper;
+package toolkit.admin.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import toolkit.admin.entries.AdminSysUser;
 
 /**
  * @author: Nocking

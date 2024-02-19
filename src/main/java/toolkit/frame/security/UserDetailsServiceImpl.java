@@ -17,10 +17,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import toolkit.mapper.AdminSysPermission;
-import toolkit.mapper.AdminSysPermissionMapper;
-import toolkit.mapper.AdminSysUser;
-import toolkit.mapper.AdminSysUserMapper;
+import toolkit.admin.entries.AdminSysPermission;
+import toolkit.admin.mapper.AdminSysPermissionMapper;
+import toolkit.admin.entries.AdminSysUser;
+import toolkit.admin.mapper.AdminSysUserMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +61,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     if (user != null) {
       //获取该用户所拥有的权限
       List<AdminSysPermission> sysPermissions = sysPermissionMapper.selectPermissionList(user.getUserId());
+      
+     
       
       // 声明用户授权
       sysPermissions.forEach(sysPermission -> {

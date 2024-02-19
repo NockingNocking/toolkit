@@ -26,31 +26,23 @@ public class SysUserController {
   /**
    * 自定义登录
    * @param param 登录传参
-   * @return
+   * @return ApiResult
    */
   @PostMapping("/login")
   public ApiResult login(@RequestBody LoginUserParam param) {
     
     return logService.login(param);
-    
   }
-  
   
   /**
    * 自定义登出
-   * @return
+   * @return ApiResult
    */
   @PostMapping("/logOut")
   public ApiResult logOut() {
     
     return logService.logOut();
-    
   }
-  
-  
-  
-  
-  
 }
 
 

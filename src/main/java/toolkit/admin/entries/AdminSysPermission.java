@@ -1,4 +1,4 @@
-package toolkit.mapper;
+package toolkit.admin.entries;
 
 /**
  * @author: Nocking
@@ -11,17 +11,20 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+
 @Data
 @Accessors(chain = true)//链式; 存取器。通过该注解可以控制getter和setter方法的形式。
-@TableName("sys_user_permission_relation")
-public class AdminSysUserPermissionRelation  {
+@TableName("sys_permission")
+public class AdminSysPermission implements Serializable {
   
-  @TableId(value = "user_permission_relation_id", type = IdType.ID_WORKER)
-  private Integer userPermissionRelationId;
-  
-  private Integer userId;
-  
+  @TableId(value = "permission_id", type = IdType.ID_WORKER)
   private Integer permissionId;
+  
+  private String permissionCode;
+  
+  private String permissionName;
+  
+  private String url;
 }
-
 

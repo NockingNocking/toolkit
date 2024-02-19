@@ -1,4 +1,4 @@
-package toolkit.mapper;
+package toolkit.admin.mapper;
 
 /**
  * @author: Nocking
@@ -9,6 +9,7 @@ package toolkit.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import toolkit.admin.entries.AdminSysPermission;
 
 import java.util.List;
 
@@ -23,11 +24,10 @@ public interface AdminSysPermissionMapper extends BaseMapper<AdminSysPermission>
   @Select({"<script>"+
       " SELECT p.* FROM"+
       " sys_user u"+
-      " LEFT JOIN sys_user_permission_relation r ON u.user_id = r.user_id"+
+      " LEFT JOIN sys_role_permission_relation r ON u.role_id = r.role_id"+
       " LEFT JOIN sys_permission p on r.permission_id = p.permission_id"+
       " WHERE u.user_id = #{userId}"+
       "</script>"
-    
   })
   List<AdminSysPermission> selectPermissionList(@Param("userId") Integer userId);
 }

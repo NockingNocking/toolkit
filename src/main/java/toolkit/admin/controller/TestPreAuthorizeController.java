@@ -21,7 +21,7 @@ public class TestPreAuthorizeController {
   @PostMapping("/hello")
   // 只有sys:queryUser 权限才能访问
   //@PreAuthorize("hasAuthority('sys:queryUser')") //这是没有自定义权限校验方法的默认写法
-  @PreAuthorize("@syex.hasAuthority('sys:queryUser')")
+  @PreAuthorize("@permissions.hasAuthority('sys:queryUser')")
   public String hello(){
     
     return "hello";
@@ -29,7 +29,7 @@ public class TestPreAuthorizeController {
   
   @PostMapping("/hello2")
   // 只有sys:queryUser2 权限才能访问
-  @PreAuthorize("@syex.hasAuthority('sys:queryUser2')")
+  @PreAuthorize("@permissions.hasAuthority('sys:queryUser2')")
   public String hello2(){
     
     return "hello2";
