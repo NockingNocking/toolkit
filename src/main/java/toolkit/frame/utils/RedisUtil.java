@@ -1,4 +1,4 @@
-package toolkit.frame.redis;
+package toolkit.frame.utils;
 
 /**
  * @author: Nocking

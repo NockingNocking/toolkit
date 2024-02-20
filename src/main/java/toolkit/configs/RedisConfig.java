@@ -1,4 +1,4 @@
-package toolkit.frame.configs;
+package toolkit.configs;
 
 /**
  * @author: Nocking

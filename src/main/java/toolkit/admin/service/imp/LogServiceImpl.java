@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import toolkit.admin.entries.LoginUserParam;
 import toolkit.admin.service.LogService;
 import toolkit.frame.api.ApiResult;
-import toolkit.frame.redis.RedisUtil;
+import toolkit.frame.utils.RedisUtil;
 import toolkit.frame.security.LogUser;
 import toolkit.frame.utils.JwtUtils;
 

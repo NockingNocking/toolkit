@@ -17,7 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import toolkit.frame.exception.BusinessException;
-import toolkit.frame.redis.RedisUtil;
+import toolkit.frame.utils.RedisUtil;
 import toolkit.frame.utils.JwtUtils;
 
 import javax.servlet.FilterChain;
