@@ -17,7 +17,7 @@ import java.util.Date;
 
 @Data
 @Accessors(chain = true)//链式; 存取器。通过该注解可以控制getter和setter方法的形式。
-@TableName("sys_user")
+@TableName("sys_roles")
 public class AdminSysUser implements Serializable {
   
   private static final long serialVersionUID = 915478504870211231L;

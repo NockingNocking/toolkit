@@ -7,8 +7,8 @@ import toolkit.frame.api.ApiResult;
  * @date: 2024/2/19
  * @package: toolkit.admin.service
  **/
-public interface SystemService {
+public interface SysMenuService {
  
-  ApiResult getMenus();
+  ApiResult getAdminSysMenus();
   
 }

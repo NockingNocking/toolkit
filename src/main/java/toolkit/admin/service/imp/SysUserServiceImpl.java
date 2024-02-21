@@ -13,7 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import toolkit.admin.entries.LoginUserParam;
-import toolkit.admin.service.LogService;
+import toolkit.admin.service.SysUserService;
 import toolkit.frame.api.ApiResult;
 import toolkit.frame.utils.RedisUtil;
 import toolkit.frame.security.LogUser;
@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Objects;
 
 @Service
-public class LogServiceImpl implements LogService {
+public class SysUserServiceImpl implements SysUserService {
   
   @Autowired
   private RedisUtil redisUtil;

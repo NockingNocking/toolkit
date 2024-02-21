@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import toolkit.admin.entries.LoginUserParam;
-import toolkit.admin.service.LogService;
+import toolkit.admin.service.SysUserService;
 import toolkit.frame.api.ApiResult;
 
 @RestController
@@ -20,7 +20,7 @@ import toolkit.frame.api.ApiResult;
 public class SysUserController {
   
   @Autowired
-  private LogService logService;
+  private SysUserService userService;
   
   
   /**
@@ -31,7 +31,7 @@ public class SysUserController {
   @PostMapping("/login")
   public ApiResult login(@RequestBody LoginUserParam param) {
     
-    return logService.login(param);
+    return userService.login(param);
   }
   
   /**
@@ -41,7 +41,7 @@ public class SysUserController {
   @PostMapping("/logOut")
   public ApiResult logOut() {
     
-    return logService.logOut();
+    return userService.logOut();
   }
 }
 

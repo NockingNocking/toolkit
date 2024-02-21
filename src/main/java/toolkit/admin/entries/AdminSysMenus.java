@@ -5,7 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
+
 
 /**
  * @author: Nocking
@@ -14,7 +16,7 @@ import java.util.List;
  **/
 @Data
 @TableName("sys_menus")
-public class AdminSysMenus {
+public class AdminSysMenus implements Serializable {
   
   @TableId(value = "id", type = IdType.ID_WORKER)
   private Integer id;
@@ -76,4 +78,11 @@ public class AdminSysMenus {
   //是否需要前置
   private Boolean affix;
   
+  // 创建时间
+  private String createdAt;
+  
+  // 子菜单集合
+  private List<AdminSysMenus> children;
+  
+ 
 }

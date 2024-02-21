@@ -2,7 +2,7 @@ package toolkit.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import toolkit.admin.service.SystemService;
+import toolkit.admin.service.SysMenuService;
 import toolkit.frame.api.ApiResult;
 
 /**
@@ -12,20 +12,18 @@ import toolkit.frame.api.ApiResult;
  **/
 @RestController
 @RequestMapping("/system/admin")
-public class SysMenusController {
+public class SysMenuController {
   
-  @Autowired(required=false)
-  private SystemService systemService;
-  
+  @Autowired
+  private SysMenuService systemService;
   
   /**
    * 获取菜单列表
-   * @param param 用户角色
    * @return ApiResult
    */
   @GetMapping("/menus")
   public ApiResult menus() {
     
-    return systemService.getMenus();
+    return systemService.getAdminSysMenus();
   }
 }

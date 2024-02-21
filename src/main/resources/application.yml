@@ -54,3 +54,4 @@ minio:
 Jwt:
   #jwt签名私钥
   secretKey: sdsdsd23232323
+  timeoutSeconds: 86400

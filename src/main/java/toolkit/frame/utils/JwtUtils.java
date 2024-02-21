@@ -23,11 +23,16 @@ import java.util.Map;
 public class JwtUtils {
   private static String secretKey;
   
-  private static Integer amount = 1800;//jwt的过期周期/秒 默认30分钟
+  private static Integer timeoutSeconds;//jwt的过期周期/秒 默认30分钟
   
   @Value("${Jwt.secretKey}")
   public void secretKey(String secretKey) {
     JwtUtils.secretKey =  secretKey;
+  }
+  
+  @Value("${Jwt.timeoutSeconds}")
+  public void timeoutSeconds(Integer timeoutSeconds) {
+    JwtUtils.timeoutSeconds =  timeoutSeconds;
   }
   
   
@@ -44,7 +49,7 @@ public class JwtUtils {
     
     //定义jwt过期时间
     Calendar instance = Calendar.getInstance();
-    instance.add(Calendar.SECOND, amount);
+    instance.add(Calendar.SECOND, timeoutSeconds);
     
     
     //payload
@@ -55,7 +60,7 @@ public class JwtUtils {
     
     // 生成token
     String token = builder.withHeader(headers)//header
-        //.withClaim("second",amount)//jwt的过期周期/秒，可以用于jwt快过期的时候自动刷新
+        //.withClaim("second",timeoutSeconds)//jwt的过期周期/秒，可以用于jwt快过期的时候自动刷新
         .withExpiresAt(instance.getTime())//指定令牌的过期时间
         .sign(Algorithm.HMAC256(secretKey));//签名
     
