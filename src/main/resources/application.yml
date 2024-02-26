@@ -55,3 +55,6 @@ Jwt:
   #jwt签名私钥
   secretKey: sdsdsd23232323
   timeoutSeconds: 86400
+
+mybatis-plus:
+  type-handlers-package: toolkit.frame.utils.transforms

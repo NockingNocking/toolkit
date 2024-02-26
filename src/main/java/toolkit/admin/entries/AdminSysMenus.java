@@ -1,9 +1,13 @@
 package toolkit.admin.entries;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import org.apache.ibatis.type.JdbcType;
+import toolkit.frame.utils.transforms.StringTypeTransform;
+
 
 import java.io.Serializable;
 import java.util.List;
@@ -15,11 +19,15 @@ import java.util.List;
  * @package: toolkit.entries
  **/
 @Data
-@TableName("sys_menus")
+@TableName(value = "sys_menus",autoResultMap = true)
 public class AdminSysMenus implements Serializable {
   
   @TableId(value = "id", type = IdType.ID_WORKER)
   private Integer id;
+  
+  //权限角色
+  @TableField(typeHandler = StringTypeTransform.class,value = "`roles`")
+  private List<String> roles;
   
   //父级路由id
   private Integer parentId;
@@ -62,9 +70,6 @@ public class AdminSysMenus implements Serializable {
   
   //状态
   private Boolean status;
-  
-  //权限角色
-  private String roles;
   
   //权限
   private String permission;

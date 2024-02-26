@@ -7,14 +7,17 @@ package toolkit.admin.entries;
  **/
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
+import toolkit.frame.utils.transforms.StringTypeTransform;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Accessors(chain = true)//链式; 存取器。通过该注解可以控制getter和setter方法的形式。
@@ -34,6 +37,10 @@ public class AdminSysUser implements Serializable {
   
   //用户密码
   private String password;
+  
+  //用户角色
+  @TableField(typeHandler = StringTypeTransform.class,value = "`roles`")
+  private List<String> roles;
   
   //用户岗位
   private String position;
