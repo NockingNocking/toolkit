@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 import toolkit.admin.entries.AdminSysMenus;
+import toolkit.admin.entries.AdminSysPermission;
 import toolkit.admin.mapper.AdminSysMenuMapper;
+
+import toolkit.admin.mapper.AdminSysPermissionMapper;
 
 import toolkit.admin.service.SysMenuService;
 import toolkit.admin.utils.TreeUtils;
@@ -28,8 +31,24 @@ public class SysMenuServiceImpl implements SysMenuService {
   @Autowired
   private TreeUtils treeUtils;
   
+  @Autowired
+  private AdminSysPermissionMapper sysPermissionMapper;
+  
   @Override
-  public ApiResult getAdminSysMenus() {
+  public ApiResult getAdminSysMenus(Integer userId) {
+    
+    List<String> permissionsList = new ArrayList<>();
+    
+    List<AdminSysPermission> sysPermissions = sysPermissionMapper.selectPermissionList(userId);
+
+    
+    // 声明用户授权
+    sysPermissions.forEach(sysPermission -> {
+      permissionsList.add(sysPermission.getPermissionCode());
+    });
+    
+    System.out.println(permissionsList);
+    
     try {
       List<AdminSysMenus> allAdminSysMenus  = menuMapper.getAdminSysMenus();
       List<AdminSysMenus> rootMenu = new ArrayList<>();

@@ -17,7 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import toolkit.frame.exception.BusinessException;
-import toolkit.frame.utils.RedisUtil;
+import toolkit.frame.utils.RedisUtils;
 import toolkit.frame.utils.JwtUtils;
 
 import javax.servlet.FilterChain;
@@ -32,7 +32,7 @@ import java.util.Objects;
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
   @Autowired
-  private RedisUtil redisUtil;
+  private RedisUtils redisUtils;
   
   //每次请求都会执行这个方法
   @Override
@@ -85,7 +85,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     
     // 获取userid 从redis中获取用户信息
     String redisKey = "login:" + userId;
-    LogUser loginUser = (LogUser)redisUtil.get(redisKey);
+    LogUser loginUser = (LogUser) redisUtils.get(redisKey);
     if (Objects.isNull(loginUser)) {
       throw new RuntimeException("用户未登录");
     }

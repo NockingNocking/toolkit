@@ -13,20 +13,18 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Data
 @Accessors(chain = true)//链式; 存取器。通过该注解可以控制getter和setter方法的形式。
-@TableName("sys_roles")
+@TableName("sys_user")
 public class AdminSysUser implements Serializable {
   
   private static final long serialVersionUID = 915478504870211231L;
   
   @TableId(value = "user_id", type = IdType.ID_WORKER)
   private Integer userId;
-  
-  //用户角色
-  private Integer roleId;
   
   //账号
   private String account;
@@ -56,10 +54,10 @@ public class AdminSysUser implements Serializable {
   private Boolean credentialsNotExpired;
   
   //创建时间
-  private Date createTime;
+  private Timestamp createTime;
   
   //修改时间
-  private Date updateTime;
+  private Timestamp updateTime;
   
 }
 

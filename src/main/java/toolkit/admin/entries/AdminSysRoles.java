@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.sql.Timestamp;
+
 /**
  * @author: Nocking
  * @date: 2024/2/21
@@ -26,6 +28,6 @@ public class AdminSysRoles {
   
   private String createdBy; // 创建人
   
-  private Integer createdTime; // 创建时间
+  private Timestamp createdTime; // 创建时间
 
 }

@@ -5,6 +5,7 @@ package toolkit.frame.security;
  * @date: 2024/2/19
  * @package: toolkit.frame.security
  **/
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -20,11 +21,13 @@ public class SecurityPermissionsExpression {
     //获取当前用户的权限
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     LogUser loginUser = (LogUser) authentication.getPrincipal();
-    List<String> permissions = loginUser.getPermissions();
-    System.out.println(permissions);
+    
+//    TODO:根据角色获取权限
+    List<String> roles = loginUser.getRolesLists();
+    System.out.println(roles);
     
     //判断用户权限集合中是否存在authority
-    return permissions.contains(authority);
+    return roles.contains(authority);
   }
 }
 

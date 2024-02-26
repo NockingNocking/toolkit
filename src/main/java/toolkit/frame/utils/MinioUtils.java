@@ -30,7 +30,7 @@ import java.util.List;
 
 
 @Component
-public class MinioUtil {
+public class MinioUtils {
   
   @Value("${minio.bucketName}")
   private String bucketName;

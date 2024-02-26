@@ -9,6 +9,6 @@ import toolkit.frame.api.ApiResult;
  **/
 public interface SysMenuService {
  
-  ApiResult getAdminSysMenus();
+  ApiResult getAdminSysMenus(Integer userId);
   
 }

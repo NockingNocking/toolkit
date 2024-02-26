@@ -28,18 +28,16 @@ public class LogUser implements UserDetails {
   //用户信息
   private AdminSysUser user;
   
-  //用户权限
-  private List<String> permissions;
+  //用户角色
+  private List<String> rolesLists;
   
   //存储SpringSecurity所需要的权限信息的集合
   @JSONField(serialize = false)
   private List<SimpleGrantedAuthority> authorities;
   
-  public LogUser(AdminSysUser user,List<String> permissions){
-    
+  public LogUser(AdminSysUser user,List<String> rolesLists){
     this.user = user;
-    this.permissions = permissions;
-    
+    this.rolesLists = rolesLists;
   }
   
   
@@ -50,7 +48,7 @@ public class LogUser implements UserDetails {
       return authorities;
     }
     //把permissions中字符串类型的权限信息转换成GrantedAuthority对象存入authorities中
-    authorities = this.permissions.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+    authorities = this.rolesLists.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     
     return authorities;
     

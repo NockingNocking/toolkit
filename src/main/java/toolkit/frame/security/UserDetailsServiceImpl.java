@@ -18,8 +18,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import toolkit.admin.entries.AdminSysPermission;
+import toolkit.admin.entries.AdminSysRoles;
 import toolkit.admin.mapper.AdminSysPermissionMapper;
 import toolkit.admin.entries.AdminSysUser;
+import toolkit.admin.mapper.AdminSysRolesMapper;
 import toolkit.admin.mapper.AdminSysUserMapper;
 
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
   
   
   @Autowired
-  private AdminSysPermissionMapper sysPermissionMapper;
+  private AdminSysRolesMapper adminSysRolesMapper;
   
   @Autowired
   private AdminSysUserMapper userMapper;
@@ -42,8 +44,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     
     //需要构造出 org.springframework.security.core.userdetails.User 对象并返回
     
-    
-    System.out.println("用户名："+username);
     if (username == null || "".equals(username)) {
       throw new RuntimeException("用户不能为空");
     }
@@ -54,25 +54,22 @@ public class UserDetailsServiceImpl implements UserDetailsService {
       throw new RuntimeException("用户不存在");
     }
     
-    
-    
-    List<String> permissionsList = new ArrayList<>();
+    List<String> rolesList = new ArrayList<>();
     
     if (user != null) {
-      //获取该用户所拥有的权限
-      List<AdminSysPermission> sysPermissions = sysPermissionMapper.selectPermissionList(user.getUserId());
-      
-     
+      //获取该用户的角色
+      List<AdminSysRoles> AdminSysRoles = adminSysRolesMapper.selectRoleLists(user.getUserId());
       
       // 声明用户授权
-      sysPermissions.forEach(sysPermission -> {
-        permissionsList.add(sysPermission.getPermissionCode());
-        
+      AdminSysRoles.forEach(sysPermission -> {
+        rolesList.add(sysPermission.getRoleCode());
       });
     }
     
+    
+  
     //返回用户信息
-    return new LogUser(user,permissionsList);
+    return new LogUser(user,rolesList);
     
   }
   

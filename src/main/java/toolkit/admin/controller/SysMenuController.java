@@ -2,6 +2,7 @@ package toolkit.admin.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import toolkit.admin.entries.LoginUserParam;
 import toolkit.admin.service.SysMenuService;
 import toolkit.frame.api.ApiResult;
 
@@ -22,8 +23,8 @@ public class SysMenuController {
    * @return ApiResult
    */
   @GetMapping("/menus")
-  public ApiResult menus() {
+  public ApiResult menus(@RequestParam Integer userId) {
     
-    return systemService.getAdminSysMenus();
+    return systemService.getAdminSysMenus(userId);
   }
 }

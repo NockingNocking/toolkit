@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import toolkit.frame.utils.MinioUtil;
+import toolkit.frame.utils.MinioUtils;
 
 
 import java.util.List;
@@ -19,15 +19,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/system/admin")
 public class FileUploadOrDownloadController {
-  private MinioUtil minioUtil;
+  private MinioUtils minioUtils;
   
-  public FileUploadOrDownloadController(MinioUtil minioUtil) {
-    this.minioUtil = minioUtil;
+  public FileUploadOrDownloadController(MinioUtils minioUtils) {
+    this.minioUtils = minioUtils;
   }
   
   @PostMapping("/upload")
   public List<String> upload(@RequestParam(name = "multipartFile") MultipartFile[] multipartFile) {
-    return minioUtil.upload(multipartFile);
+    return minioUtils.upload(multipartFile);
   }
   
 }

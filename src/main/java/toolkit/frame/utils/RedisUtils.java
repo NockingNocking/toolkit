@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 @Order(-1)
-public final class RedisUtil {
+public final class RedisUtils {
   
   @Autowired
   private RedisTemplate redisTemplate;
