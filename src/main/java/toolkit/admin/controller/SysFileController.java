@@ -1,15 +1,14 @@
 package toolkit.admin.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-import toolkit.frame.utils.MinioUtils;
-
-
-import java.util.List;
+import toolkit.admin.service.SysFileService;
+import toolkit.frame.api.ApiResult;
 
 /**
  * @author: Nocking
@@ -18,16 +17,14 @@ import java.util.List;
  **/
 @RestController
 @RequestMapping("/system/admin")
-public class FileUploadOrDownloadController {
-  private MinioUtils minioUtils;
+public class SysFileController {
   
-  public FileUploadOrDownloadController(MinioUtils minioUtils) {
-    this.minioUtils = minioUtils;
-  }
+  @Autowired
+  private SysFileService sysFileService;
   
   @PostMapping("/upload")
-  public List<String> upload(@RequestParam(name = "multipartFile") MultipartFile[] multipartFile) {
-    return minioUtils.upload(multipartFile);
+  public ApiResult upload(@RequestParam MultipartFile[] multipartFile, String bucketName) {
+    return sysFileService.upload(multipartFile,bucketName);
   }
   
 }

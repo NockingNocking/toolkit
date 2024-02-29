@@ -32,9 +32,6 @@ public class MinioConfig {
   @Bean
   public MinioClient minioClient() {
     
-  
-    
-    
     MinioClient minioClient = MinioClient.builder()
         .endpoint(minioPropertiesConfig.getEndpoint())
         .credentials(minioPropertiesConfig.getAccessKey(), minioPropertiesConfig.getSecretKey())
