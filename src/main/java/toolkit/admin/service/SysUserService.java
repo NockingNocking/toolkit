@@ -1,5 +1,6 @@
 package toolkit.admin.service;
 
+import org.springframework.web.multipart.MultipartFile;
 import toolkit.admin.entries.LoginUserParam;
 import toolkit.frame.api.ApiResult;
 
@@ -13,4 +14,8 @@ public interface SysUserService {
   ApiResult login(LoginUserParam param);
   
   ApiResult logOut();
+  
+  ApiResult userInfos(Integer userId);
+  
+  ApiResult uploadAvatar(MultipartFile[] multipartFile);
 }

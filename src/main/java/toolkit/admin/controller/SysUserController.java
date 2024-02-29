@@ -7,10 +7,8 @@ package toolkit.admin.controller;
  **/
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import toolkit.admin.entries.LoginUserParam;
 import toolkit.admin.service.SysUserService;
 import toolkit.frame.api.ApiResult;
@@ -40,8 +38,25 @@ public class SysUserController {
    */
   @PostMapping("/logOut")
   public ApiResult logOut() {
-    
     return userService.logOut();
+  }
+  
+  /**
+   * 获取用户信息
+   * @return ApiResult
+   */
+  @GetMapping("/userInfos")
+  public ApiResult userInfos(@RequestParam Integer userid) {
+    return userService.userInfos(userid);
+  }
+  
+  /**
+   * 上传用户头像
+   * @return ApiResult
+   */
+  @PostMapping("/uploadAvatar")
+  public ApiResult uploadAvatar(@RequestParam(name = "avatar") MultipartFile[] multipartFile) {
+    return userService.uploadAvatar(multipartFile);
   }
 }
 

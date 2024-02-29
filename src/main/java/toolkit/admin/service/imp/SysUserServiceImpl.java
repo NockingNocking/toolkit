@@ -12,17 +12,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import toolkit.admin.entries.AdminSysUser;
 import toolkit.admin.entries.LoginUserParam;
 import toolkit.admin.mapper.AdminSysUserMapper;
 import toolkit.admin.service.SysUserService;
 import toolkit.frame.api.ApiResult;
+import toolkit.frame.utils.MinioUtils;
 import toolkit.frame.utils.RedisUtils;
 import toolkit.frame.security.LogUser;
 import toolkit.frame.utils.JwtUtils;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
@@ -36,6 +37,8 @@ public class SysUserServiceImpl implements SysUserService {
   @Autowired
   private AdminSysUserMapper adminSysUserMapper;
   
+  @Autowired
+  private MinioUtils minioUtils;
   
   @Override
   public ApiResult login(LoginUserParam param) {
@@ -67,7 +70,6 @@ public class SysUserServiceImpl implements SysUserService {
       throw new RuntimeException("redis连接不上，登录失败");
     }
     
-    
     return ApiResult.success(payloadMap);
   }
   
@@ -83,6 +85,19 @@ public class SysUserServiceImpl implements SysUserService {
     
   }
   
+  @Override
+  public ApiResult userInfos(Integer userId){
+    AdminSysUser adminSysUser = adminSysUserMapper.selectById(userId);
+    return ApiResult.success(adminSysUser);
+  }
+  
+  @Override
+  public ApiResult uploadAvatar(MultipartFile[] multipartFile){
+    
+    List<String> fileNames = minioUtils.upload(multipartFile,"avatar");
+    
+    return ApiResult.success(fileNames);
+  }
 }
 
 
